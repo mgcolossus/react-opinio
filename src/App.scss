@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+$paper-padding-multiplier: 2;
+
+.main-container {
+  display: flex;
+
+  .main-mui-container {
+    padding-top: 80px;
+    padding-bottom: 32px;
+  }
+}
+
+.paper {
+  padding: 8px * $paper-padding-multiplier;
+}
+
+.answer-paper {
+  margin: 8px 2px;
+}
+
+.login-signup-container {
+  padding: $paper-padding-multiplier * 16px;
+}
+
+.survey-element-answer-parameters {
+    // margin: 10px;
+    // display: flex;
+    // flex-wrap: wrap;
+    // align-items: center;
+    // justify-content: space-between;
+    &__answer-type-selector {
+        min-width: 230px;
+    }
+}
+
+.survey-element__action-buttons {
+  display: flex;
+  align-items: center;
+  &_added-element {
+    justify-content: flex-end;
+  }
+  &_element-answer-type_text {
+    justify-content: flex-end;
+    padding: 10px 0;
+  }
+  &_element-answer-type_selection {
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  &_changing-element-answer-type_text {
+    justify-content: flex-end;
+    padding: 10px 0;
+  }
+  &_changing-element-answer-type_selection {
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+}
+
+.progress-circle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.survey-element__reset-button {
+  margin: 0 10px 0 0;
+}
+.survey-element__save-element-button {
+  margin: 0px 0px 0px 10px;
+}
+
+.survey-error {
+  border: 1px solid red;
+  border-radius: 5px;
+}
+
+.no-survey-instruction {
+  height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbar-links {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 100%;
+}
+
+.survey-question-input textarea {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
+.survey-form-loader, .survey-form-load-failed {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.survey-form-description {
+  padding: 0 16px;
+}
+
+.survey-element-answer-parameters-switches {
+  display: flex;
+  flex-direction: column;
+}
+
+.survey-answers-pagination {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.answer-chart-wrapper {
+  min-width: 600px;
+  height: 500px;
+}
