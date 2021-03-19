@@ -1,3 +1,6 @@
+React-opinio - web-приложение для создания опросов. 
+Frontend написан на React, частично используется MobX.
+Backend написан на Express, база данных - PostgresQL
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
