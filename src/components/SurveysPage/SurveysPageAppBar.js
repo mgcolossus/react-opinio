@@ -8,10 +8,19 @@ import {
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { useAuth } from "./../../contexts/AuthContext";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  toolbarLinks: {
+    display: "flex",
+    justifyContent: "flex-end",
+    flex: "1 1 100%"
+  }
+}));
 
 function SurveysPageAppBar(props) {
   const [appBarMenuAnchorEl, setAppBarMenuAnchorEl] = useState(null);
-
+  const classes = useStyles();
   const { logOut, currentUser } = useAuth();
 
   const openAppBarMenu = (e) => {
@@ -25,7 +34,7 @@ function SurveysPageAppBar(props) {
     <>
       <AppBar position="fixed">
         <Toolbar>
-          <div className="toolbar-links">
+          <div className={classes.toolbarLinks}>
             <Button onClick={openAppBarMenu} color="inherit" startIcon={<AccountCircle />}>
               {currentUser.name}
             </Button>
