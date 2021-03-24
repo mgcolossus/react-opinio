@@ -13,6 +13,7 @@
 *.env
 *.rarz
 .vscode
+.eslintcache
 
 # misc
 .DS_Store
