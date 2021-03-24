@@ -15,31 +15,22 @@ const fs = require("fs");
 const http = require("http");
 const https = require("https");
 
-const checkAuthenticated = require('./middleware/checkAuthenticated');
-const checkNotAuthenticated = require('./middleware/checkNotAuthenticated');
+const checkAuthenticated = require("./middleware/checkAuthenticated");
+const checkNotAuthenticated = require("./middleware/checkNotAuthenticated");
 const validateLogIn = require("./middleware/validateLogIn");
 const validateSignUp = require("./middleware/validateSignUp");
 
+const surveysRoute = require("./routes/surveysRoute");
 
-const surveysRoute = require('./routes/surveysRoute');
-
-const whiteList = ["https://react-opinio.netlify.app"];
 const corsOptions = {
   credentials: true,
-  origin: (origin, callback) => {
-    if (whiteList.includes(origin)) return callback(null, true);
-    callback(new Error("Not allowed by CORS"));
-  }
+  origin: "https://react-opinio.netlify.app",
 };
 
 app.use(cors(corsOptions));
 
 const initializePassport = require("./passwordConfig");
-initializePassport(
-  passport,
-  DbInterface.getUserByEmail,
-  DbInterface.getUserById
-);
+initializePassport(passport, DbInterface.getUserByEmail, DbInterface.getUserById);
 
 app.use(
   express.urlencoded({
@@ -70,20 +61,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.post(
-  "/login",
-  checkNotAuthenticated,
-  validateLogIn,
-  passport.authenticate("local"),
-  (req, res) => {
-    res.status(200).send({
-      status: "ok",
-      user: {
-        name: req.user.name,
-      },
-    });
-  }
-);
+app.post("/login", checkNotAuthenticated, validateLogIn, passport.authenticate("local"), (req, res) => {
+  res.status(200).send({
+    status: "ok",
+    user: {
+      name: req.user.name,
+    },
+  });
+});
 
 app.get("/login", checkAuthenticated, (req, res) => {
   res.status(200).send({
@@ -94,32 +79,23 @@ app.get("/login", checkAuthenticated, (req, res) => {
   });
 });
 
-app.post(
-  "/register",
-  validateSignUp,
-  async (req, res) => {
-    try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      DbInterface.addUserToDatabase(
-        uuidv4(),
-        req.body.name,
-        req.body.email,
-        hashedPassword
-      );
-      res.status(200).send("Signed up");
-    } catch (err) {
-      console.log(err);
-      res.status(500).send("Internal error");
-    }
+app.post("/register", validateSignUp, async (req, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    DbInterface.addUserToDatabase(uuidv4(), req.body.name, req.body.email, hashedPassword);
+    res.status(200).send("Signed up");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal error");
   }
-);
+});
 
 app.get("/logout", checkAuthenticated, (req, res) => {
   req.logOut();
   res.status(200).send("You've logged out");
 });
 
-app.use('/api/surveys', surveysRoute);
+app.use("/api/surveys", surveysRoute);
 
 const privateKey = fs.readFileSync(process.env.PRIVATE_KEY, "utf8");
 const certificate = fs.readFileSync(process.env.CERTIFICATE, "utf8");
