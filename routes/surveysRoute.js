@@ -79,7 +79,7 @@ router.get("/link/:surveyId", checkAuthenticated, async (req, res) => {
       return res.status(404).send("Survey doesn't belong to the user you're logged in");
     }
     const surveyLinkToken = await DbInterface.getSurveyLinkToken(req.user.id, req.params.surveyId);
-    const link = `http://localhost:3000/forms/${surveyLinkToken}`;
+    const link = `https://react-opinio.netlify.app/forms/${surveyLinkToken}`;
     res.status(200).send(link);
   } catch (error) {
     console.log(error);
@@ -132,7 +132,7 @@ router.get("/link/recreate/:surveyId", checkAuthenticated, async (req, res) => {
       return res.status(404).send("Survey doesn't belong to the user you're logged in");
     }
     const surveyLinkToken = await DbInterface.recreateSurveyLinkToken(req.user.id, req.params.surveyId);
-    const link = `http://localhost:3000/forms/${surveyLinkToken}`;
+    const link = `https://react-opinio.netlify.app/forms/${surveyLinkToken}`;
     res.status(200).send(link);
   } catch (error) {
     console.log(error);
