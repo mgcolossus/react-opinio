@@ -55,7 +55,7 @@ function SavedSurveyGetLinkDialog({ isOpen, onClose, surveyId }) {
           </Grid>
           <Grid item xs={12}>
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Button
                   onClick={recreateSurveyLink}
                   variant="contained"
@@ -65,7 +65,7 @@ function SavedSurveyGetLinkDialog({ isOpen, onClose, surveyId }) {
                   Пересоздать ссылку
                 </Button>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Button
                   onClick={copyLinkToClipboard}
                   variant="contained"
