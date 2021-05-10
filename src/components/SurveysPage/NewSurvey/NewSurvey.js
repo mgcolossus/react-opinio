@@ -1,15 +1,28 @@
 import React, { useState } from "react";
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { observer } from "mobx-react-lite";
 import { v4 as uuidv4 } from "uuid";
 import SurveyStore from "../../../stores/surveyDataStore";
 import NewSurveyElements from "./NewSurveyElements";
+
+const useStyles = makeStyles((theme) => ({
+  titleInput: {
+    fontSize: "36px",
+    fontWeight: 700
+  },
+  noteInput: {
+    fontSize: "24px"
+  }
+}));
 
 function NewSurvey(props) {
   const [newSurveyTitle, setNewSurveyTitle] = useState("");
   const [newSurveyNote, setNewSurveyNote] = useState("");
   const [newSurveyElements, setNewSurveyElements] = useState([]);
   const [changingElementIndex, setChangingElementIndex] = useState(null);
+
+  const classes = useStyles();
 
   const saveSurvey = () => {
     const surveyListTitles = props.surveysData.map((survey) => survey.title);
@@ -43,9 +56,8 @@ function NewSurvey(props) {
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label="Название опроса"
-            variant="outlined"
-            size="small"
+            placeholder="Название опроса"
+            InputProps={{ className: classes.titleInput }}
             value={newSurveyTitle}
             onChange={(e) => setNewSurveyTitle(e.target.value)}
           />
@@ -54,15 +66,14 @@ function NewSurvey(props) {
           <TextField
             fullWidth
             multiline
-            label="Примечание"
-            variant="outlined"
-            size="small"
+            InputProps={{ className: classes.noteInput }}
+            placeholder="Примечание"
             value={newSurveyNote}
             onChange={(e) => setNewSurveyNote(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="body1">Ответ на вопросы с * обязателен</Typography>
+          <Typography variant="body1">Ответ на вопросы с будет * обязателен</Typography>
         </Grid>
         <NewSurveyElements
           newSurveyElements={newSurveyElements}
