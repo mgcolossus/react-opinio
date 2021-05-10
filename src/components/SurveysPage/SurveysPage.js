@@ -78,7 +78,6 @@ function SurveysPage() {
             />
           </Grid>
           <Grid item xs={12} md={8}>
-            <Paper elevation={3} className="paper">
               <SelectedSurvey
                 selectedSurveyIndex={selectedSurveyIndex}
                 isNewSurveySelected={isNewSurveySelected}
@@ -87,7 +86,6 @@ function SurveysPage() {
                 setSelectedSurveyIndex={setSelectedSurveyIndex}
                 setIsNewSurveySelected={setIsNewSurveySelected}
               />
-            </Paper>
           </Grid>
         </Grid>
       </Container>
