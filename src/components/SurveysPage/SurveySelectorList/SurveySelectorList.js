@@ -79,9 +79,6 @@ function SurveySelectorList(props) {
                 }}
                 primary="Создать новый опрос"
               />
-              <ListItemIcon>
-                <AddCircleIcon fontSize="large" color="primary" />
-              </ListItemIcon>
             </ListItem>
           </List>
           {isDeleteSurveyDialogOpen ? (
