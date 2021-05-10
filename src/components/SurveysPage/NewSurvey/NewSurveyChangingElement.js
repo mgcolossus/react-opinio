@@ -161,7 +161,7 @@ function NewSurveyChangingElement({
   return (
     <>
       <Grid item xs={12}>
-        <Paper className="paper">
+        <Paper elevation={3} className="paper">
           <Grid container className={classes["MuiGrid-spacing-xs-2"]} spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -195,7 +195,6 @@ function NewSurveyChangingElement({
               resetChanges={resetChanges}
               saveChanges={saveChangedSurveyElement}
             />
-            {/* // {getChangingElementAnswerOptionsInterface(selectedTypeIndex)} */}
           </Grid>
         </Paper>
       </Grid>
