@@ -17,7 +17,7 @@ function SurveyElement({
 }) {
   return (
     <Grid item xs={12} key={elementData.elementId}>
-      <Paper className="paper">
+      <Paper elevation={3} className="paper">
         <Grid container>
           <Grid item container justify="flex-end" xs={12}>
             {moveElementUp ? (
