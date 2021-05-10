@@ -47,11 +47,11 @@ function SurveyAnswers({ surveyId }) {
       ) : error ? (
         <Typography>Произошла ошибка</Typography>
       ) : (
-        <Grid container spacing={2}>
+        <>
           {Object.keys(statsData.questionIds).map((key) => {
             return <SurveyAnswerItem key={key} answerData={statsData.questionIds[key]} passedCounter={statsData.passedCounter} />;
           })}
-        </Grid>
+        </>
       )}
     </>
   );
