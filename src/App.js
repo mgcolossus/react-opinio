@@ -8,6 +8,8 @@ import "./App.scss";
 function App() {
   const { currentUser } = useAuth();
   return (
+    <>
+    <div className="bgс-block_purple"></div>
     <Switch>
       <Route path="/" exact>
         {currentUser ? (
@@ -27,6 +29,7 @@ function App() {
         <NotFoundPage />
       </Route>
     </Switch>
+    </>
   );
 }
 
