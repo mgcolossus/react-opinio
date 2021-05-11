@@ -29,7 +29,7 @@ function SurveyElementAnswerParametersEditor({
     <>
       <Grid item className={"selectFormControlGridItem"} sm={7}>
         <FormControl className={classes.selectFormControl}>
-          <InputLabel>Тип вопроса</InputLabel>
+          <InputLabel>Тип ответа</InputLabel>
           <Select onChange={changeAnswerType} value={selectedTypeIndex}>
             {ANSWER_TYPES_FOR_SELECT.map((type, index) => (
               <MenuItem key={type + index} value={index}>
