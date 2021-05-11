@@ -1,16 +1,15 @@
 import React from "react";
-import { Grid, TextField, Paper } from "@material-ui/core";
+import { Grid, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SavedSurveyElements from "../SavedSurveyElements";
 import TabPanel from "../TabPanel";
 
 const useStyles = makeStyles((theme) => ({
-  titleInput: {
-    fontSize: "36px",
-    fontWeight: 700,
+  titleTypography: {
+    wordBreak: "break-all",
   },
-  noteInput: {
-    fontSize: "20px",
+  noteTypography: {
+    wordBreak: "break-all",
   },
 }));
 
@@ -22,22 +21,14 @@ function SavedSurveyQuestionsTab({ tabValue, surveyData }) {
         <Paper elevation={3} className="paper">
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                multiline
-                placeholder="Название опроса"
-                value={surveyData.title}
-                InputProps={{ className: classes.titleInput }}
-              />
+              <Typography className={classes.titleTypography} variant="h4">
+                {surveyData.title}
+              </Typography>
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                placeholder="Примечание"
-                multiline
-                value={surveyData.note}
-                InputProps={{ className: classes.noteInput }}
-              />
+              <Typography className={classes.noteTypography} variant="h5">
+                {surveyData.note}
+              </Typography>
             </Grid>
           </Grid>
         </Paper>
