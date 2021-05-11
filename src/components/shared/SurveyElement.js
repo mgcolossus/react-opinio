@@ -1,11 +1,18 @@
 import React from "react";
-import { Grid, IconButton, Input, Paper } from "@material-ui/core";
+import { Grid, IconButton, Input, Paper, Typography } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { observer } from "mobx-react-lite";
 import SurveyElementAnswerTemplate from "./SurveyElementAnswerTemplate";
+
+const useStyles = makeStyles((theme) => ({
+  titleTypography: {
+    wordBreak: "break-all"
+  },
+}));
 
 function SurveyElement({
   elementData,
@@ -15,6 +22,7 @@ function SurveyElement({
   moveElementUp,
   moveElementDown,
 }) {
+  const classes = useStyles();
   return (
     <Grid item xs={12} key={elementData.elementId}>
       <Paper elevation={3} className="paper">
@@ -42,7 +50,7 @@ function SurveyElement({
             ) : null}
           </Grid>
           <Grid item xs={12}>
-            <Input multiline fullWidth value={`${elementData.question}${elementData.required ? "*" : ""}`} />
+            <Typography className={classes.titleTypography} variant="h6">{`${elementData.question}${elementData.required ? "*" : ""}`}</Typography>
           </Grid>
         </Grid>
         <Grid item xs={12}>
