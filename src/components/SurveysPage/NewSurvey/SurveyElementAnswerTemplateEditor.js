@@ -42,6 +42,9 @@ function SurveyElementAnswerTemplateEditor({
   otherOptionAllowed,
   changeOptionText,
   removeOption,
+  onOptionEnterPress,
+  currentFocusedInputIndex,
+  createdInputRef,
 }) {
   const classes = useStyles();
   switch (type) {
@@ -69,6 +72,13 @@ function SurveyElementAnswerTemplateEditor({
                         <div style={{ display: "flex" }}>
                           <TextField
                             className="optionInputTextField"
+                            placeholder="Текст опции"
+                            inputRef={currentFocusedInputIndex === index ? createdInputRef : null}
+                            onKeyPress={(e) => {
+                              if (e.key === "Enter") {
+                                onOptionEnterPress(index);
+                              }
+                            }}
                             value={optionText}
                             fullWidth
                             onChange={(e) => changeOptionText(e.target.value, index)}
@@ -101,7 +111,14 @@ function SurveyElementAnswerTemplateEditor({
                       label={
                         <div style={{ display: "flex" }}>
                           <TextField
+                            inputRef={currentFocusedInputIndex === index ? createdInputRef : null}
+                            onKeyPress={(e) => {
+                              if (e.key === "Enter") {
+                                onOptionEnterPress(index);
+                              }
+                            }}
                             className="optionInputTextField"
+                            placeholder="Текст опции"
                             value={optionText}
                             fullWidth
                             onChange={(e) => changeOptionText(e.target.value, index)}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Grid, Paper, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import NewSurveyChangingElementMainButtons from "./NewSurveyChangingElementMainButtons";
@@ -54,6 +54,15 @@ function NewSurveyChangingElement({
   const [changingElementAnswerType, setChangingElementAnswerType] = useState(ANSWER_TYPES_FOR_STATE[selectedTypeIndex]);
   const [changingElementAnswerOptions, setChangingElementAnswerOptions] = useState(elementData.options || []);
 
+  const [currentFocusedInputIndex, setCurrentFocusedInputIndex] = useState();
+  const createdInputRef = useRef();
+
+  useEffect(() => {
+    if (createdInputRef.current) {
+      createdInputRef.current.focus();
+    }
+  }, [currentFocusedInputIndex]);
+
   const classes = useStyles();
 
   const changeAnswerType = (e) => {
@@ -75,7 +84,8 @@ function NewSurveyChangingElement({
   };
 
   const addOption = () => {
-    setChangingElementAnswerOptions((prev) => [...prev, "Текст опции"]);
+    setChangingElementAnswerOptions((prev) => [...prev, ""]);
+    setCurrentFocusedInputIndex(changingElementAnswerOptions.length);
   };
 
   const changeOptionText = (newText, optionToChangeIndex) => {
@@ -158,6 +168,15 @@ function NewSurveyChangingElement({
     }
   };
 
+  const onOptionEnterPress = (index) => {
+    setChangingElementAnswerOptions((prev) => {
+      const newArr = [...prev];
+      newArr.splice(index + 1, 0, "");
+      return newArr;
+    });
+    setCurrentFocusedInputIndex(index + 1);
+  };
+
   return (
     <>
       <Grid item xs={12}>
@@ -188,6 +207,9 @@ function NewSurveyChangingElement({
               otherOptionAllowed={changingElementOtherOptionAllowed}
               changeOptionText={changeOptionText}
               removeOption={removeOption}
+              onOptionEnterPress={onOptionEnterPress}
+              currentFocusedInputIndex={currentFocusedInputIndex}
+              createdInputRef={createdInputRef}
             />
             <NewSurveyChangingElementMainButtons
               type={selectedTypeIndex}

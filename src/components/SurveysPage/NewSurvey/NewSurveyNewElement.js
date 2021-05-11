@@ -1,6 +1,6 @@
 import { Grid, Paper, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import NewSurveyNewElementMainButtons from "./NewSurveyNewElementMainButtons";
 import SurveyElementAnswerParametersEditor from "./SurveyElementAnswerParametersEditor";
@@ -40,7 +40,16 @@ function NewSurveyNewElement({ setError, setNewSurveyElements }) {
   const [newElementId, setNewElementId] = useState(uuidv4());
   const [newElementAnswerOptions, setNewElementAnswerOptions] = useState([]);
 
+  const [currentFocusedInputIndex, setCurrentFocusedInputIndex] = useState();
+  const createdInputRef = useRef();
+
   const classes = useStyles();
+
+  useEffect(() => {
+    if (createdInputRef.current) {
+      createdInputRef.current.focus();
+    }
+  }, [currentFocusedInputIndex]);
 
   const changeAnswerType = (e) => {
     const selectedIndex = Number(e.target.value);
@@ -57,7 +66,8 @@ function NewSurveyNewElement({ setError, setNewSurveyElements }) {
   };
 
   const addOption = () => {
-    setNewElementAnswerOptions((prev) => [...prev, "Текст опции"]);
+    setNewElementAnswerOptions((prev) => [...prev, ""]);
+    setCurrentFocusedInputIndex(newElementAnswerOptions.length);
   };
 
   const changeOptionText = (newText, optionToChangeIndex) => {
@@ -134,6 +144,15 @@ function NewSurveyNewElement({ setError, setNewSurveyElements }) {
     }
   };
 
+  const onOptionEnterPress = (index) => {
+    setNewElementAnswerOptions((prev) => {
+      const newArr = [...prev];
+      newArr.splice(index + 1, 0, "");
+      return newArr;
+    });
+    setCurrentFocusedInputIndex(index + 1);
+  };
+
   return (
     <Grid item xs={12}>
       <Paper className="paper survey-element">
@@ -163,6 +182,9 @@ function NewSurveyNewElement({ setError, setNewSurveyElements }) {
             otherOptionAllowed={newElementOtherOptionAllowed}
             changeOptionText={changeOptionText}
             removeOption={removeOption}
+            onOptionEnterPress={onOptionEnterPress}
+            currentFocusedInputIndex={currentFocusedInputIndex}
+            createdInputRef={createdInputRef}
           />
           <NewSurveyNewElementMainButtons
             type={selectedTypeIndex}
