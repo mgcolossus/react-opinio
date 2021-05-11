@@ -59,6 +59,7 @@ function NewSurvey(props) {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
+                  multiline
                   placeholder="Название опроса"
                   InputProps={{ className: classes.titleInput }}
                   value={newSurveyTitle}

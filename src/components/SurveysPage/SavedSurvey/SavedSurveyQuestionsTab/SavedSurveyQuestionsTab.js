@@ -24,6 +24,7 @@ function SavedSurveyQuestionsTab({ tabValue, surveyData }) {
             <Grid item xs={12}>
               <TextField
                 fullWidth
+                multiline
                 placeholder="Название опроса"
                 value={surveyData.title}
                 InputProps={{ className: classes.titleInput }}
