@@ -1,8 +1,14 @@
-import React from 'react';
-import { Grid, Paper, Typography, InputBase } from "@material-ui/core";
-import SurveyAnswerItemAnswerTypeText from "./SurveyAnswerItemAnswerTypeText"
-import SurveyAnswerItemAnswerTypeSelection from "./SurveyAnswerItemAnswerTypeSelection"
+import React from "react";
+import { Grid, Paper, Typography } from "@material-ui/core";
+import SurveyAnswerItemAnswerTypeText from "./SurveyAnswerItemAnswerTypeText";
+import SurveyAnswerItemAnswerTypeSelection from "./SurveyAnswerItemAnswerTypeSelection";
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+  titleTypography: {
+    wordBreak: "break-all",
+  },
+}));
 
 function getSurveyAnswerItemByTypeFromData(answerData) {
   switch (answerData.answerType) {
@@ -17,12 +23,14 @@ function getSurveyAnswerItemByTypeFromData(answerData) {
   }
 }
 
-
 function SurveyAnswerItem({ answerData, passedCounter }) {
+  const classes = useStyles();
   return (
     <Grid item xs={12}>
       <Paper className="paper">
-        <InputBase className="survey-question-input" fullWidth multiline value={answerData.question} />
+        <Typography className={classes.titleTypography} variant="h6">
+          {answerData.question}
+        </Typography>
         {answerData.unanswered !== passedCounter ? (
           <>{getSurveyAnswerItemByTypeFromData(answerData)}</>
         ) : (
