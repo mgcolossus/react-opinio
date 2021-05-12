@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Paper,
-  Grid,
-  TextField,
-  Button,
-  Typography,
-  Link,
-  CircularProgress,
-} from "@material-ui/core";
+import { Paper, Grid, TextField, Button, Typography, Link, CircularProgress } from "@material-ui/core";
 
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -81,6 +73,15 @@ function LoginPage() {
                       color="primary"
                       fullWidth>
                       Log in
+                    </Button>
+                  </Grid>
+                  <Grid item xs={10}>
+                    <Button
+                      onClick={() => logInWithEmailAndPassword("jake@jake.com", "123123")}
+                      variant="contained"
+                      color="primary"
+                      fullWidth>
+                      Войти в тестовый аккаунт
                     </Button>
                   </Grid>
                   <Grid item xs={10}>
