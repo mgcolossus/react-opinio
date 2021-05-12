@@ -44,6 +44,7 @@ function SurveyElementAnswerTemplateEditor({
   removeOption,
   onOptionEnterPress,
   currentFocusedInputIndex,
+  setCurrentFocusedInputIndex,
   createdInputRef,
 }) {
   const classes = useStyles();
@@ -74,6 +75,7 @@ function SurveyElementAnswerTemplateEditor({
                             className="optionInputTextField"
                             placeholder="Текст опции"
                             inputRef={currentFocusedInputIndex === index ? createdInputRef : null}
+                            onFocus={() => setCurrentFocusedInputIndex(index)}
                             onKeyPress={(e) => {
                               if (e.key === "Enter") {
                                 onOptionEnterPress(index);
@@ -112,6 +114,7 @@ function SurveyElementAnswerTemplateEditor({
                         <div style={{ display: "flex" }}>
                           <TextField
                             inputRef={currentFocusedInputIndex === index ? createdInputRef : null}
+                            onFocus={() => setCurrentFocusedInputIndex(index)}
                             onKeyPress={(e) => {
                               if (e.key === "Enter") {
                                 onOptionEnterPress(index);

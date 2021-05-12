@@ -184,6 +184,7 @@ function NewSurveyNewElement({ setError, setNewSurveyElements }) {
             removeOption={removeOption}
             onOptionEnterPress={onOptionEnterPress}
             currentFocusedInputIndex={currentFocusedInputIndex}
+            setCurrentFocusedInputIndex={setCurrentFocusedInputIndex}
             createdInputRef={createdInputRef}
           />
           <NewSurveyNewElementMainButtons
