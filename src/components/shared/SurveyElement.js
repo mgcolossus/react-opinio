@@ -9,7 +9,7 @@ import { observer } from "mobx-react-lite";
 import SurveyElementAnswerTemplate from "./SurveyElementAnswerTemplate";
 
 const useStyles = makeStyles((theme) => ({
-  titleTypography: {
+  questionTypography: {
     wordBreak: "break-all"
   },
 }));
@@ -50,7 +50,7 @@ function SurveyElement({
             ) : null}
           </Grid>
           <Grid item xs={12}>
-            <Typography className={classes.titleTypography} variant="h6">{`${elementData.question}${elementData.required ? "*" : ""}`}</Typography>
+            <Typography className={classes.questionTypography} variant="h6">{`${elementData.question}${elementData.required ? "*" : ""}`}</Typography>
           </Grid>
         </Grid>
         <Grid item xs={12}>
