@@ -29,12 +29,13 @@ const MyResponsiveBar = ({ data, size }) => (
     colors={data.map((item) => item.color)}
     margin={{ top: 20, right: 20, bottom: 20, left: size.width > 550 ? 150 : 60 }}
     padding={0.3}
-    enableGridX={true}
+    enableGridY={null}
     labelTextColor="#fff"
     label={(data) => `${data.value}%`}
     labelFormat={(d) => {
       return <tspan style={{ fontSize: 16 }}>{d}</tspan>;
     }}
+    axisBottom={null}
     tooltip={({ data }) => {
       return (
         <g>
@@ -86,7 +87,7 @@ function SurveyAnswerItemAnswerTypeSelection({ answerData }) {
     <Paper className="paper answer-paper">
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <div ref={wrapperRef} style={{ width: "100%", height: `${dataForChart.length * 50 + 100}px` }}>
+          <div ref={wrapperRef} style={{ height: `${dataForChart.length * 50 + 100}px` }}>
             <MyResponsiveBar size={chartSize} data={dataForChart} />
           </div>
         </Grid>
